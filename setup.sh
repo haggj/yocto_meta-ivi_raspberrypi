@@ -35,9 +35,10 @@ build_dir=${startup_dir}/build-meta-ivi
 
 if [ ! -d  ${startup_dir}/meta-raspberrypi ]
 then
-	echo -e "${GREEN}Cloning raspberrypi...${NC}\n\n"
+	echo -e "${GREEN}Cloning raspberrypi...${NC}"
 	git clone ${rpi_url} -b ${rpi_branch} ${startup_dir}/meta-raspberrypi
 	cd ${startup_dir}/meta-raspberrypi
+	echo -e "${GREEN}Checkout to defined revision...${NC}\n"	
 	git checkout ${rpi_revision}
 else
 	echo -e "${GREEN}Repository for raspberrypi already exists.${NC}"
@@ -45,9 +46,10 @@ fi
 
 if [ ! -d  ${startup_dir}/meta-gplv2 ]
 then
-	echo -e "\n\n${GREEN}Cloning gplv2...${NC}\n\n"
+	echo -e "\n\n${GREEN}Cloning gplv2...${NC}"
 	git clone ${gplv2_url} -b ${gplv2_branch} ${startup_dir}/meta-gplv2
 	cd ${startup_dir}/meta-gplv2 
+	echo -e "${GREEN}Checkout to defined revision...${NC}\n"	
 	git checkout ${gplv2_revision}
 else
 	echo -e "${GREEN}Repository for gplv2 already exists.${NC}"
@@ -57,9 +59,10 @@ cd
 
 if [ ! -d  ${startup_dir}/meta-openembedded ]
 then
-	echo -e "\n\n${GREEN}Cloning openembedded...${NC}\n\n"
+	echo -e "\n\n${GREEN}Cloning openembedded...${NC}"
 	git clone ${oe_url} -b ${oe_branch} ${startup_dir}/meta-openembedded
 	cd ${startup_dir}/meta-openembedded
+	echo -e "${GREEN}Checkout to defined revision...${NC}\n"	
 	git checkout ${oe_revision}
 else
 	echo -e "${GREEN}Repository for openembedded already exists.${NC}"
@@ -70,6 +73,7 @@ then
 	echo -e "\n\n${GREEN}Cloning meta-ivi...${NC}"
 	git clone ${meta_ivi_url} -b ${meta_ivi_branch} ${startup_dir}/meta-ivi
 	cd ${startup_dir}/meta-ivi
+	echo -e "${GREEN}Checkout to defined revision...${NC}\n"		
 	git checkout ${meta_ivi_revision}
 else
 	echo -e "${GREEN}Repository for meta-ivi already exists.${NC}"
@@ -81,6 +85,7 @@ then
 	echo -e "\n\n${GREEN}Cloning poky...${NC}"
 	git clone ${poky_url} -b ${poky_branch} ${startup_dir}/poky
 	cd ${startup_dir}/poky
+	echo -e "${GREEN}Checkout to defined revision...${NC}\n"	
 	git checkout ${poky_revision}
 else
 	echo -e "${GREEN}Repository for poky already exists.${NC}"
