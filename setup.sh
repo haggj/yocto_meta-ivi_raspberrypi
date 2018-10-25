@@ -10,11 +10,11 @@ NC='\033[0m' # No Color
 
 poky_branch="sumo"
 poky_url="git://git.yoctoproject.org/poky"
-poky_revision="96fbd39ba32362416c18d90bb7a81eb6a76912e0"
+poky_revision="d240b885f26e9b05c8db0364ab2ace9796709aad"
 
 oe_branch="sumo"
 oe_url="git://git.openembedded.org/meta-openembedded"
-oe_revision="b0950aeff5b630256bb5e25ca15f4d59c115e7c1"
+oe_revision="2bb21ef27c4b0c9d52d30b3b2c5a0160fd02b966"
 
 gplv2_branch="sumo"
 gplv2_url="git://git.yoctoproject.org/meta-gplv2"
@@ -24,9 +24,9 @@ rpi_branch="sumo"
 rpi_url="https://github.com/agherzan/meta-raspberrypi.git"
 rpi_revision="sumo"
 
-meta_ivi_branch="master"
+meta_ivi_branch="14.x-sumo"
 meta_ivi_url="https://github.com/GENIVI/meta-ivi.git"
-meta_ivi_revision="master"
+meta_ivi_revision="14.x-sumo"
 
 startup_dir=${PWD}
 build_dir=${startup_dir}/build-meta-ivi
@@ -167,6 +167,9 @@ CONF_VERSION = "1"
 DISTRO_FEATURES_append = " systemd"
 VIRTUAL-RUNTIME_init_manager = "systemd"
 DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+
+PREFERRED_VERSION_audiomanager          ?= "7.0"
+PREFERRED_VERSION_audiomanagerplugins   ?= "7.0"
 
 INCOMPATIBLE_LICENSE ?= "GPLv3"
 EOL
