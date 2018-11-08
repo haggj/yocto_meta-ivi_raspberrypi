@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #This script sets up the environment to create a raspberry-pi image that contains the meta-ivi layer
-#See https://github.com/GENIVI/meta-ivi for the currently recommended revisions and branches 
+#See https://github.com/GENIVI/meta-ivi/tree/14.x-sumo for the currently recommended revisions and branches 
 
 ###############################Set Variables################################
 
@@ -24,7 +24,7 @@ rpi_branch="sumo"
 rpi_url="https://github.com/agherzan/meta-raspberrypi.git"
 rpi_revision="sumo"
 
-meta_ivi_branch="14.x-sumo"
+meta_ivi_branch="master"
 meta_ivi_url="https://github.com/GENIVI/meta-ivi.git"
 meta_ivi_revision="14.x-sumo"
 
@@ -35,10 +35,9 @@ build_dir=${startup_dir}/build-meta-ivi
 
 if [ ! -d  ${startup_dir}/meta-raspberrypi ]
 then
-	echo -e "${GREEN}Cloning raspberrypi...${NC}"
+	echo -e "${GREEN}Cloning raspberrypi...${NC}\n\n"
 	git clone ${rpi_url} -b ${rpi_branch} ${startup_dir}/meta-raspberrypi
 	cd ${startup_dir}/meta-raspberrypi
-	echo -e "${GREEN}Checkout to defined revision...${NC}\n"	
 	git checkout ${rpi_revision}
 else
 	echo -e "${GREEN}Repository for raspberrypi already exists.${NC}"
@@ -46,10 +45,9 @@ fi
 
 if [ ! -d  ${startup_dir}/meta-gplv2 ]
 then
-	echo -e "\n\n${GREEN}Cloning gplv2...${NC}"
+	echo -e "\n\n${GREEN}Cloning gplv2...${NC}\n\n"
 	git clone ${gplv2_url} -b ${gplv2_branch} ${startup_dir}/meta-gplv2
 	cd ${startup_dir}/meta-gplv2 
-	echo -e "${GREEN}Checkout to defined revision...${NC}\n"	
 	git checkout ${gplv2_revision}
 else
 	echo -e "${GREEN}Repository for gplv2 already exists.${NC}"
@@ -59,10 +57,9 @@ cd
 
 if [ ! -d  ${startup_dir}/meta-openembedded ]
 then
-	echo -e "\n\n${GREEN}Cloning openembedded...${NC}"
+	echo -e "\n\n${GREEN}Cloning openembedded...${NC}\n\n"
 	git clone ${oe_url} -b ${oe_branch} ${startup_dir}/meta-openembedded
 	cd ${startup_dir}/meta-openembedded
-	echo -e "${GREEN}Checkout to defined revision...${NC}\n"	
 	git checkout ${oe_revision}
 else
 	echo -e "${GREEN}Repository for openembedded already exists.${NC}"
@@ -73,7 +70,6 @@ then
 	echo -e "\n\n${GREEN}Cloning meta-ivi...${NC}"
 	git clone ${meta_ivi_url} -b ${meta_ivi_branch} ${startup_dir}/meta-ivi
 	cd ${startup_dir}/meta-ivi
-	echo -e "${GREEN}Checkout to defined revision...${NC}\n"		
 	git checkout ${meta_ivi_revision}
 else
 	echo -e "${GREEN}Repository for meta-ivi already exists.${NC}"
@@ -85,7 +81,6 @@ then
 	echo -e "\n\n${GREEN}Cloning poky...${NC}"
 	git clone ${poky_url} -b ${poky_branch} ${startup_dir}/poky
 	cd ${startup_dir}/poky
-	echo -e "${GREEN}Checkout to defined revision...${NC}\n"	
 	git checkout ${poky_revision}
 else
 	echo -e "${GREEN}Repository for poky already exists.${NC}"
@@ -139,6 +134,8 @@ cat > ${build_dir}/conf/local.conf << EOL
 
 MACHINE = "raspberrypi3"
 
+PREFERRED_VERSION_audiomanagerplugins   ?= "7.0"
+
 DISTRO ?= "poky-ivi-systemd"
 
 PACKAGE_CLASSES ?= "package_rpm"
@@ -167,9 +164,6 @@ CONF_VERSION = "1"
 DISTRO_FEATURES_append = " systemd"
 VIRTUAL-RUNTIME_init_manager = "systemd"
 DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
-
-PREFERRED_VERSION_audiomanager          ?= "7.0"
-PREFERRED_VERSION_audiomanagerplugins   ?= "7.0"
 
 INCOMPATIBLE_LICENSE ?= "GPLv3"
 EOL
