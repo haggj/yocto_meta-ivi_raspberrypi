@@ -134,8 +134,6 @@ cat > ${build_dir}/conf/local.conf << EOL
 
 MACHINE = "raspberrypi3"
 
-PREFERRED_VERSION_audiomanagerplugins   ?= "7.0"
-
 DISTRO ?= "poky-ivi-systemd"
 
 PACKAGE_CLASSES ?= "package_rpm"
